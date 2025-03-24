@@ -1,0 +1,169 @@
+<!--
+	THIS EXAMPLE WAS DOWNLOADED FROM https://echarts.apache.org/examples/en/editor.html?c=bar-waterfall2&code=PYBwLglsB2AEC8sDeAoWtJgDYFMBcya6GOAHmAQOQCCAxgK4C29WwsAJjrLQBb0BuAQ1jRhAMUEAvHNHbCAwoIBOogF8AjYQB1oIYEtiDobHI1hNYIHEoC3wdm06wAjAAZDxgM6wdACgBMrs4ALIawgf4AzACUlEQAvgA0RGDAwFjqwKQEqMSwAGY4gmD0SviEeehyYIIAWmmMOUSVsACe1KQQngCSsmQE-YJYnjjNxElj6J6C_DjUPYyCAObluS2WEKQ4WABKxVAE_pOw8WOn6BNVxXUNBADaY2t5YK1WVBDQnhCccXmXxE9iC83rBKJ4sN9rL9xkQALrJdCpdKQEBNZ5KCBLFZKKiCTqeSgI4h4roABWAHzA1jRlWB5TBPEEDgA7tCLkT0Pl9IswFScQV6NBaJAYLBfCBlIJGJ5ohVKrQYJ50jgAHSsJbiyXS6LHXBgDDKADcxwg-TFEqUUs8d2csNgADJ7ZYtdbbSqhFh6FwAITwRCUAC0lFlgOeygQzst0ptsONLXisG2IzlLRqBkQFqtd38seO50qZRKKgNBkdJZVokYXAA1KCADzqJQAegAfJRYLW0yqRhicJ4AHJSmug2BUDvlj1euMw9lEXArWQ0q41e40BjMVgcNhGExmACyECwNirYCUwAJ8LGuHyFFBAHZXABSQljVKo0HOZ8JIlLDHsJcYKABAAETOP4j7ARysDXrelCRM-UEYksPCwcECFjJkvLAI0oLwS-eQKtANQfAAMoI6jbAQp5et-RCkB0XQAXSVC0MUOBLPorT4cQ1SCAQvj5IKwpQHAvghrqOD6hCnj6ogdy5i0XIGL4eqwBAEaBM4kSGmpsB1ogETaWp1bVuJ6zQV0YAqiA9CeDwvgQNE05_MchalHA0lgM5JzRGJtHoO0-JMa89KTjg0L_D2EB9vcjzHJW9Kklggi0DgPDpJwSjcc8IVUJoWVQVMNS0AA1lQAAqwA1Fg2XEF8uBEVRSheoValUowADKLy4ABeSZEomXyOk-hUKeRieBaMhgLVBHDfylBjZ8k1EWy4ytaYICMl8ni9cQEDtV1rQ9Sm6z9YNc2jZaS3KFNM3yhdoKLRNN0rccFx5q1xy8fcriJOEAAcv2wAAbP9wQqsDf1uHezgqpEUORMDwNw1DACsd53iq_1_VEwT-BDONg64Kqo39kTBJEsPY7AkT_YEKOwMEd6o_9KoAJx_ajWmoyTsJnFBoYiEOFVVUMhjriwTLAHdzGgvld0ySlZWgtA7H7LMd35XueIAOrfGAPAEMTzitfVU0DEMIytftpiHcdgvoGd1hDaw81Pct02tegCqu5d40e6ts4tBtW2MSdeQ2513WrG9xBO0oLsjY9V3PWUK1e8QPtJwtKcB7H-Z_K132wNmgN_aD4OQy4rgwwzWlI3X6OY9TuP41X_hEyTZMU1TZN08T8OM8zrMc7AXORDzqN84XcUtAlVB0EwLCONuxiJvuh7HpJZ4Eq1suUPLpvFcrlCVdVd3F6XQPBK4ld98jd442zpPhM4sMv3ewPg9TwRs5jo-ozZrDQetNWYvzZrTAmNNP4Q0vC0SOdsY7mSzvyYCEJkJgHUJ6HAwEPq6nIpRcOdV0rMiai1WOegvgimgKNUAgcThQXzHzeIhogA
+	⚠ Please be aware that this chart is not an official demo of Apache ECharts but is made by user-generated code.
+-->
+<!DOCTYPE html>
+<html lang="en" style="height: 100%">
+<head>
+  <meta charset="utf-8">
+</head>
+<body style="height: 100%; margin: 0">
+  <div id="container" style="height: 100%"></div>
+
+  
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+  
+  <!-- Uncomment this line if you want to dataTool extension
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5/dist/extension/dataTool.min.js"></script>
+  -->
+  <!-- Uncomment this line if you want to use gl extension
+  <script type="text/javascript" src="https://echarts.apache.org/en/js/vendors/echarts-gl/dist/echarts-gl.min.js"></script>
+  -->
+  <!-- Uncomment this line if you want to echarts-stat extension
+  <script type="text/javascript" src="https://echarts.apache.org/en/js/vendors/echarts-stat/dist/ecStat.min.js"></script>
+  -->
+  <!-- Uncomment this line if you want to echarts-graph-modularity extension
+  <script type="text/javascript" src="https://echarts.apache.org/en/js/vendors/echarts-graph-modularity/dist/echarts-graph-modularity.min.js"></script>
+  -->
+  <!-- Uncomment this line if you want to use map
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@4.9.0/map/js/world.js"></script>
+  -->
+  <!-- Uncomment these two lines if you want to use bmap extension
+  <script type="text/javascript" src="https://api.map.baidu.com/api?v=3.0&ak=YOUR_API_KEY"></script>
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5/dist/extension/bmap.min.js"></script>
+  -->
+
+  <script type="text/javascript">
+    var dom = document.getElementById('container');
+    var myChart = echarts.init(dom, null, {
+      renderer: 'canvas',
+      useDirtyRect: false
+    });
+    var app = {};
+    
+    var option;
+
+    option = {
+  title: {
+    text: 'Acumulo de chuva na Fazenda Carnaúba \npor ano em um período de 10 anos \n(2014 a 2023)'
+  },
+  toolbox: {
+    feature: {
+      dataZoom: {
+        yAxisIndex: false
+      },
+      saveAsImage: {
+        pixelRatio: 2
+      }
+    }
+  },
+  dataZoom: [
+    {
+      type: 'inside'
+    },
+    {
+      type: 'slider'
+    }
+  ],
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'shadow'
+    },
+    formatter: function (params) {
+      console.log(params)
+      let tar;
+      if (params[1] && params[1].value !== '-') {
+        tar = params[1];
+      } else {
+        tar = params[2];
+      }
+      return tar && tar.name + '<br/>' + tar.seriesName + ' : ' + tar.value;
+    }
+  },
+  legend: {
+    data: ['Acumulo do ano em Milímetros'],
+    left: '70%',
+    top: '1%'
+  },
+  grid: {
+    top: "12%",
+    left: '3%',
+    right: '4%',
+    bottom: '3%',
+    containLabel: true
+  },
+  xAxis: {
+    type: 'category',
+    data: (function () {
+      let list = [];
+      for (let i = 2013; i <= 2023; i++) {
+        list.push(i);
+      }
+      return list;
+    })()
+  },
+  yAxis: {
+    type: 'value'
+  },
+  series: [
+    {
+      name: 'Placeholder',
+      type: 'bar',
+      stack: 'Total',
+      silent: true,
+      itemStyle: {
+        borderColor: 'transparent',
+        color: 'transparent'
+      },
+      emphasis: {
+        itemStyle: {
+          borderColor: 'transparent',
+          color: 'transparent'
+        }
+      },
+      
+      data: [0, 280, 684.6, 1071.3, 1366.3, 1577.8, 2342.6, 2840.5, 3431.8, 3820.3, 4758.9, 5135.5]
+    },
+    {
+      name: 'Total acumulado',
+      type: 'bar',
+      stack: 'negative',
+      barMaxWidth: 0.1,
+      silent: false,
+      itemStyle: {
+        borderColor: 'transparent',
+        color: 'transparent'
+      },
+      emphasis: {
+        itemStyle: {
+          borderColor: 'transparent',
+          color: 'transparent'
+        }
+      },
+      data: [280, 684.6, 1071.3, 1366.3, 1577.8, 2342.6, 2840.5, 3431.8, 3820.3, 4758.9, 5135.5]
+    },
+    {
+      name: 'Acumulo do ano em Milímetros',
+      type: 'bar',
+      stack: 'Total',
+      data: [280, 404.6, 386.7, 295, 211.5, 764.8, 497.9, 591.3, 388.5, 938.6, 376.6],
+      itemStyle: {
+        color: "lightblue"
+      },
+      label: {
+        show: true,
+        position: 'top'
+      },
+    }
+  ]
+};
+
+    if (option && typeof option === 'object') {
+      myChart.setOption(option);
+    }
+
+    window.addEventListener('resize', myChart.resize);
+  </script>
+</body>
+</html>
