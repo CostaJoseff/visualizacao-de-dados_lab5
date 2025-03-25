@@ -1,0 +1,202 @@
+<!--
+	THIS EXAMPLE WAS DOWNLOADED FROM https://echarts.apache.org/examples/en/editor.html?c=bar-simple&code=PYBwLglsB2AEC8sDeAoWszGAG0iAXMmuhgE4QDmFApqYQOQCGAHhAM70A0x6L7ACsAjQwtQqhIkwATxDUGbABaMAJsADuXHiSWqNAZRnZ5RSZIDGOYHVj0AxADMnzrWZKhG5iDMIAGAHQATNxuAL4hJKHE4cTMAIKsbOLaMnIM5oyiFNbSriQqmYyEABQOAK7Q5pAwsMUAlKZmxmCw2OwtiADaALoA3NroDta1zbAQCLCBvgCMACy9Y7AAPIhTgQDMCxAA1NsNEm6t7f4gZUrFEHX9YQOwpNRgZaRwbWxg15F19dERxNIJ7GSklSJnoADdGNgytR6D9iMQ2LQINQkrBOtoDpJoIwALYmABEcXMZRxZWwwHxEUkBTARTRs18s38ADZOLB1gAOZn-ADsbMCAE4AKz86bTfwi2A85lMjls2YCnn-AVsoUC8XrNmcjkStkCzksrXSlndKlSWSggBGjFIeUk3moOMM0mMQMOlnJNnoYFIjGgbBANuoIlhYTN6GwjEt1GwbrcSg0hAckMRtyikhikkxJGxeMIhOJpPJsD9onI1kptxpdM6gQ5vnljMN7K5vP5wtF4sl0tl8sVytV6v8mpbOsl-p1zNNtxBDGttvDY1ETqMJmzFisXp9foDQZDacXkejsca8cUidgyewqZuGbN69guYJlbc1cInXoAFouLZv2yvz-AH_n-v6ASBQGgcB9DTm4s62POdokA6K4umutzoB61gMNu_qBvc-5hrcR4xnGZgJuoSYptQabaJmJAPk--ZEiSZLACWsA4ow7C1DiOJ1C-Zhvmi0yBEyrKQRJEFCkK6zDlBeqybM8mwNJATTFBMFmHB9AIYu84AOKMAQv7TL4vgAKSIegyHOq6p5mJhNj4nYsyzOY5iufiB5EVGJH2ZI5GED60KLugIDAGw3hQNA-aYCAXm3pEZoYrcjGwAWLHFowHHBhFPF8QJ1KFO-EGftMSoqrAn5DnyVUcrJkqlYEzLcpVTW-IE_hyhJn5CsynW-JpwIWnONpWbABlGQwZVmZZi42aupEbp6-Z2O5rmed5bjESeD7oIFZAhehsDhZF1QxellrAGAmA4glZjppExDdCgoS9EAA
+	⚠ Please be aware that this chart is not an official demo of Apache ECharts but is made by user-generated code.
+-->
+<!DOCTYPE html>
+<html lang="en" style="height: 100%">
+<head>
+  <meta charset="utf-8">
+</head>
+<body style="height: 100%; margin: 0">
+  <div id="container" style="height: 90%"></div>
+  <div>
+    <label for="Minimo">Minimo: </label>
+    <input type="number" id="Minimo" placeholder="Digite um número" />
+    <label for="Maximo">Maximo: </label>
+    <input type="number" id="Maximo" placeholder="Digite um número" />
+    <button onclick="atualizarGrafico()">Filtrar</button>
+    <button onclick="resetarGrafico()">Resetar</button>
+  </div>
+  
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+  
+  <!-- Uncomment this line if you want to dataTool extension
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5/dist/extension/dataTool.min.js"></script>
+  -->
+  <!-- Uncomment this line if you want to use gl extension
+  <script type="text/javascript" src="https://echarts.apache.org/en/js/vendors/echarts-gl/dist/echarts-gl.min.js"></script>
+  -->
+  <!-- Uncomment this line if you want to echarts-stat extension
+  <script type="text/javascript" src="https://echarts.apache.org/en/js/vendors/echarts-stat/dist/ecStat.min.js"></script>
+  -->
+  <!-- Uncomment this line if you want to echarts-graph-modularity extension
+  <script type="text/javascript" src="https://echarts.apache.org/en/js/vendors/echarts-graph-modularity/dist/echarts-graph-modularity.min.js"></script>
+  -->
+  <!-- Uncomment this line if you want to use map
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@4.9.0/map/js/world.js"></script>
+  -->
+  <!-- Uncomment these two lines if you want to use bmap extension
+  <script type="text/javascript" src="https://api.map.baidu.com/api?v=3.0&ak=YOUR_API_KEY"></script>
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5/dist/extension/bmap.min.js"></script>
+  -->
+
+  <script type="text/javascript">
+    var dom = document.getElementById('container');
+    var myChart = echarts.init(dom, null, {
+      renderer: 'canvas',
+      useDirtyRect: false
+    });
+    var app = {};
+    
+    var option;
+
+    option = {
+      title: {
+      text: 'Variação do acumulo de chuva (por ano) em relação ao ano anterior.\nFazenda Carnaúba - Taperoá - PB (2014 - 2023)\n',
+      left:'30%'
+    },
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'shadow',
+      shadowStyle: {
+        color: '#ffffff',
+        opacity: 0.2,
+      },
+    }
+  },
+  dataZoom: [
+    {
+      type: 'inside'
+    },
+    {
+      type: 'slider'
+    }
+  ],
+  toolbox: {
+    feature: {
+      dataZoom: {
+        yAxisIndex: false
+      },
+      saveAsImage: {
+        pixelRatio: 2
+      }
+    }
+  },
+  xAxis: {
+    type: 'category',
+    data: (function () {
+      let list = [];
+      for (let i = 2014; i <= 2023; i++) {
+        list.push(i);
+      }
+      return list;
+    })()
+  },
+  
+  yAxis: {
+    type: 'value'
+  },
+  
+  series: [
+    {
+      name: "Acumulo",
+      data: [404.6, 386.7, 295, 211.5, 764.8, 497.9, 591.3, 388.5, 938.6, 376.6],
+      type: 'bar',
+      itemStyle: {
+        color: 'transparent'
+      },
+      label: {
+        show: false
+      }
+    },
+    {
+      name: "Acumulo anterior",
+      data: [280, 404.6, 386.7, 295, 211.5, 764.8, 497.9, 591.3, 388.5, 938.6],
+      type: 'bar',
+      itemStyle: {
+        color: 'transparent'
+      },
+      label: {
+        show: false
+      }
+    },
+    {
+      name: "",
+      data: ['-', '-', '-', '-', '-', '-', '-', '-', '-', '-'],
+      type: 'bar',
+      itemStyle: {
+        color: 'transparent'
+      },
+      label: {
+        show: false
+      }
+    },
+    {
+      name: "Acumulo a mais (mm)",
+      data: [124.6, '-', '-', '-', 553.3, '-', 93.4, '-', 550.1, '-'],
+      type: 'bar',
+      barGap: '-100%',
+      itemStyle: {
+        color: "#44cc44"
+      },
+      label: {
+        show: true,
+        position: "top"
+      }
+    },
+    
+    {
+      name: "Acumulo a menos (mm)",
+      data: ['-', -17.9, -91.7, -83.5, '-', -266.9, '-', -202.8, '-', -562.0],
+      type: 'bar',
+      barGap: '-100%',
+      itemStyle: {
+        color: "#cc4444"
+      },
+      label: {
+        show: true,
+        position: "bottom"
+      }
+    }
+  ]
+};
+
+    if (option && typeof option === 'object') {
+      myChart.setOption(option);
+    }
+
+    df = [280, 404.6, 386.7, 295, 211.5, 764.8, 497.9, 591.3, 388.5, 938.6, 376.6]
+    positiveDf = [124.6, '-', '-', '-', 553.3, '-', 93.4, '-', 550.1, '-']
+    negativeDf = ['-', -17.9, -91.7, -83.5, '-', -266.9, '-', -202.8, '-', -562.0]
+
+    window.addEventListener('resize', myChart.resize);
+    function resetarGrafico() {
+      var opcoesAtuais = myChart.getOption();
+      opcoesAtuais['series'][3]['data'] = positiveDf
+      opcoesAtuais['series'][4]['data'] = negativeDf
+      myChart.setOption(opcoesAtuais);
+    }
+
+    function atualizarGrafico() {
+      var valor1 = document.getElementById('Minimo').value;
+      var valor2 = document.getElementById('Maximo').value;
+      if (valor1 && valor2 && valor1 < valor2) {
+          var opcoesAtuais = myChart.getOption();
+          valor1 = parseFloat(valor1);
+          valor2 = parseFloat(valor2);
+
+          novoNegDf = negativeDf.map(x => x >= valor1 && x <= valor2 ? x : '-');
+          novoPosDf = positiveDf.map(x => x >= valor1 && x <= valor2 ? x : '-');
+
+          opcoesAtuais['series'][3]['data'] = novoPosDf
+          opcoesAtuais['series'][4]['data'] = novoNegDf
+
+          myChart.setOption(opcoesAtuais);
+      } else {
+          alert('Por favor, preencha ambos os campos corretamente.');
+      }
+    }
+  </script>
+</body>
+</html>
